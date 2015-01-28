@@ -14,3 +14,18 @@ post('/surveys') do
   @surveys = Survey.all()
   erb(:index)
 end
+
+get('/survey/:id') do
+  survey_id = params.fetch("id").to_i()
+  @survey = Survey.find(survey_id)
+  erb(:survey)
+end
+
+post('/questions') do
+  survey_id= params.fetch('survey_id').to_i()
+  description= params.fetch('description')
+  @survey = Survey.find(survey_id)
+  Question.create({:description => description, :survey_id => survey_id})
+  @questions= Question.all()
+erb(:survey)
+end

@@ -14,7 +14,7 @@
 <% if @surveys.any?() %>
 <ul>
   <% @surveys.each() do |survey|%>
-    <li><%= survey.name() %></li>
+    <li><a href="/survey/<%= survey.id() %>"><%= survey.name() %></a></li> 
   <% end %>
 </ul>
 <% end %>
