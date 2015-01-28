@@ -1,0 +1,27 @@
+<h1>Edit page for : <%= @question.description() %></h1>
+
+<h3>Rewrtie the description</h3>
+
+<form action="/edit_question" method="post">
+  <input name="_method" type="hidden" value = "patch">
+  <input name= "question_id" value='<%= @question.id() %>' type="hidden">
+
+  <div class="form-group">
+    <label for="new_description">Question Rewrite</label>
+    <input name="new_description" id="new_description" class="form-group" type="text">
+  </div>
+
+  <button type="submit" class="btn button-info">Edit Question</button>
+
+</form>
+
+<br  />
+
+<form action="/delete_question" method="post">
+  <input name="_method" type="hidden" value= "delete">
+  <input name="question_id" value='<%= @question.id() %>' type="hidden">
+
+  <button type="submit" class="btn btn-danger">Delete Question</button>
+</form>
+
+<a type="button" href="/survey/<%= @question.survey_id()%>">Go Back To Questions Page</a>

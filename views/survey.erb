@@ -1,4 +1,4 @@
-<h1>Edit Survey:<%= @survey.name() %></h1>
+<h1>Edit Survey: <a href="/edit_survey/<%= @survey.id()%>"><%= @survey.name() %></a></h1>
 
 <form action= "/questions" method="post">
   <input value="<%= @survey.id() %>" name="survey_id" type="hidden">
@@ -13,7 +13,9 @@
 <% if @questions.any?() %>
 <ol>
   <% @questions.each() do |question| %>
-    <li><%= question.description() %></li>
+    <li><a href='/edit_question/<%= question.id()%>'><%= question.description() %></a></li>
   <% end %>
 </ol>
 <% end %>
+
+<a href="/">Return to Survey List</a>
