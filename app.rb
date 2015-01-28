@@ -18,7 +18,7 @@ end
 get('/survey/:id') do
   survey_id = params.fetch("id").to_i()
   @survey = Survey.find(survey_id)
-  @questions = Question.all()
+  @questions = @survey.questions()
   erb(:survey)
 end
 
@@ -27,7 +27,7 @@ post('/questions') do
   description= params.fetch('description')
   @survey = Survey.find(survey_id)
   Question.create({:description => description, :survey_id => survey_id})
-  @questions= Question.all()
+  @questions= @survey.questions()
   erb(:survey)
 end
 
@@ -49,7 +49,7 @@ delete('/delete_question') do
   @question= Question.find(question_id)
   @survey= Survey.find(@question.survey_id())
   @question.destroy()
-  @questions= Question.all()
+  @questions= @survey.questions()
   erb(:survey)
 end
 
@@ -69,6 +69,9 @@ end
 delete('/delete_survey') do
   survey_id= params.fetch("survey_id").to_i()
   @survey= Survey.find(survey_id)
+  @survey.questions().each() do |question|
+    question.destroy()
+  end
   @survey.destroy()
   @surveys= Survey.all()
   erb(:index)
