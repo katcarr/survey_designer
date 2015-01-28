@@ -1,7 +1,5 @@
 <h1>Edit Survey:<%= @survey.name() %></h1>
 
-<h3>Here are your questions!</h3>
-
 <form action= "/questions" method="post">
   <input value="<%= @survey.id() %>" name="survey_id" type="hidden">
   <div class="form-group">
@@ -10,3 +8,12 @@
   </div>
   <button type="submit-warning">Add Question</button>
 </form>
+
+<h3>Here are your questions!</h3>
+<% if @questions.any?() %>
+<ol>
+  <% @questions.each() do |question| %>
+    <li><%= question.description() %></li>
+  <% end %>
+</ol>
+<% end %>

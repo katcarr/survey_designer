@@ -18,6 +18,7 @@ end
 get('/survey/:id') do
   survey_id = params.fetch("id").to_i()
   @survey = Survey.find(survey_id)
+  @questions = Question.all()
   erb(:survey)
 end
 
