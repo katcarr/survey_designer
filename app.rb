@@ -1,4 +1,16 @@
-require("bundle/setup")
+require("bundler/setup")
 Bundler.require(:default)
 
-DIR[File.dirname(_FILE_) + '/lib/*.rb'].each { |file| require file}
+Dir[File.dirname(__FILE__) + '/lib/*.rb'].each { |file| require file}
+
+get("/") do
+  @surveys = Survey.all()
+  erb(:index)
+end
+
+post('/surveys') do
+  name = params.fetch('name')
+  Survey.create({:name => name})
+  @surveys = Survey.all()
+  erb(:index)
+end

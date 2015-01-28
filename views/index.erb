@@ -1,0 +1,20 @@
+<h1>Welcome to The Create Surveys App</h1>
+
+<h3>Add the name of your survey</h3>
+<form action="/surveys" method="post">
+  <div class="form-group">
+    <label for="name">Name: </label>
+    <input id="name" name="name" class="form-control">
+  </div>
+
+  <button type="submit" class="btn">Add Survey</button>
+
+</form>
+
+<% if @surveys.any?() %>
+<ul>
+  <% @surveys.each() do |survey|%>
+    <li><%= survey.name() %></li>
+  <% end %>
+</ul>
+<% end %>
