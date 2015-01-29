@@ -17,5 +17,9 @@ RSpec.configure do |config|
       question.destroy()
     end
 
+    Response.all().each do |response|
+      response.destroy()
+    end
+
   end
 end
