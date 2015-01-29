@@ -1,5 +1,10 @@
-<h1>Edit page for : <%= @question.description() %></h1>
-
+<h1>Edit page for Question : <%= @question.description() %></h1>
+<h2>With responses : </h2>
+  <% @question.responses().each() do |response|%>
+    <ul>
+      <li><%= response.description() %></li>
+    </ul>
+  <% end %>
 <h3>Rewrtie the description</h3>
 
 <form action="/edit_question" method="post">

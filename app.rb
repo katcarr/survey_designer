@@ -25,8 +25,10 @@ end
 post('/questions') do
   survey_id= params.fetch('survey_id').to_i()
   description= params.fetch('description')
+  responses = params.fetch("responses")
   @survey = Survey.find(survey_id)
-  Question.create({:description => description, :survey_id => survey_id})
+  question = Question.create({:description => description, :survey_id => survey_id})
+  question.add_responses(responses)
   @questions= @survey.questions()
   erb(:survey)
 end
